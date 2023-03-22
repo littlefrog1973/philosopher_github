@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+study_exceptional_control_flow
+study_concurrent_programming
+gpt

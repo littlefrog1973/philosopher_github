@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:23:46 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/02/26 07:48:41 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:19:42 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,41 @@
 
 typedef struct  s_philo
 {
+	int				id;
+	int				state;
+	int				last_meal;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*print_lock;
+}	t_philo;
+
+typedef struct s_philo_prop
+{
 	int	n_philo;
 	int	t_die;
 	int	t_eat;
-	int	t_sleep;
-} t_philo;
+	int t_sleep;
+}	t_philo_prop;
+
+#define	MAX_PHILO		100
+#define	STATE_THINKING	0
+#define	STATE_EATING	1
+#define	STATE_SLEEPING	2
+#define	STATE_DEAD		3
+
 
 /*philosopher.c*/
 
 /*init.c*/
-int	init_philo(char *argv[], t_philo *philo);
+int	init_philo_prop(char *argv[], t_philo_prop *philo);
 
 /*ft_atoi.c*/
 int	ft_atoi(char *str);
+
+/* thread.c */
+void	*thread(void *vargp);
 
 #endif

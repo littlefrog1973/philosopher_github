@@ -6,52 +6,49 @@
 #    By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 12:25:01 by sdeeyien          #+#    #+#              #
-#    Updated: 2023/02/26 07:50:20 by sdeeyien         ###   ########.fr        #
+#    Updated: 2023/03/21 09:48:31 by sdeeyien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-#CFLAGS =
+CC = clang
+CFLAGS = -Wall -Werror -Wextra -g
 UNAME_S := $(shell uname -s)
 SRCDIR = ./src/
 OBJDIR =
 DEPS = philosopher.h
-PTHREAD = -pthread
 
-SRC = philosopher.c ft_atoi.c init.c
+SRC = philosopher.c init.c ft_atoi.c
 BONUS =
 
 OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(SRC))
-BONUS_OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(BONUS))
+#BONUS_OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(BONUS))
 SRC := $(addprefix $(SRCDIR), $(SRC))
-BONUS := $(addprefix $(SRCDIR), $(BONUS))
+#BONUS := $(addprefix $(SRCDIR), $(BONUS))
 DEPS := $(addprefix $(SRCDIR), $(DEPS))
 
-NAME = philo
+NAME = philosopher
 BONUS_NAME =
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ $(PTHREAD) -o $@
-
-bonus : $(BONUS_NAME)
-
-$(BONUS_NAME): $(BONUS_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(OBJDIR)%.o: $(SRCDIR)%.c $(DEPS)
+#bonus : $(BONUS_NAME)
+
+#$(BONUS_NAME): $(BONUS_OBJ)
+#	make -C $(LIBDIR) all
+#	$(CC) $(CFLAGS) $^ $(LIBDIR)/$(LIBOBJ) -o $@
+
+%.o: $(SRCDIR)%.c $(DEPS)
 	$(CC) -c $(CFLAGS) $(DEPS) $<
 
 
 clean :
-	cd $(OBJDIR); rm -f *.o
-	make -C $(LIBDIR) clean
+	rm -f *.o
 
 fclean : clean
 	rm -f $(NAME) $(BONUS_NAME)
-	make -C $(LIBDIR) fclean
 
 re : fclean all
 
