@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:16:08 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/22 15:18:09 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:33:51 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char *argv[])
 {
 	t_philo_prop	philo_prop;
 	int				i;
-//	int				n_philo;
 	pthread_t		philo[MAX_PHILO];
 	pthread_mutex_t	forks[MAX_PHILO];
 	t_philo			*ptr;
@@ -104,6 +103,7 @@ int	main(int argc, char *argv[])
 		while (i < MAX_PHILO)
 		{
 			pthread_mutex_destroy(&forks[i]);
+			i++;
 		}
 		pthread_mutex_destroy(&print_lock);
 	}
