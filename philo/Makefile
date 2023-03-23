@@ -6,12 +6,12 @@
 #    By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 12:25:01 by sdeeyien          #+#    #+#              #
-#    Updated: 2023/03/21 09:48:31 by sdeeyien         ###   ########.fr        #
+#    Updated: 2023/03/23 13:22:36 by sdeeyien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 UNAME_S := $(shell uname -s)
 SRCDIR = ./src/
 OBJDIR =

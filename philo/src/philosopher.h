@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:23:46 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/22 11:19:42 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/23 08:59:10 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct  s_philo
 {
 	int				id;
-	int				state;
+//	int				state;
 	int				last_meal;
 	int				t_die;
 	int				t_eat;
@@ -46,6 +46,7 @@ typedef struct s_philo_prop
 #define	STATE_EATING	1
 #define	STATE_SLEEPING	2
 #define	STATE_DEAD		3
+#define	FORK_TAKEN		4
 
 
 /*philosopher.c*/
