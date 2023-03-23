@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:23:46 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/23 08:59:10 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/24 06:15:27 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct  s_philo
 	int				t_sleep;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*print_lock;
+	pthread_mutex_t	*p_lck;
 }	t_philo;
 
 typedef struct s_philo_prop
@@ -50,14 +50,23 @@ typedef struct s_philo_prop
 
 
 /*philosopher.c*/
+void	print_log(t_philo *philo, int state);
 
 /*init.c*/
 int	init_philo_prop(char *argv[], t_philo_prop *philo);
+int	check_argv(int argc, char *argv[]);
+int	init_philo_prop(char *argv[], t_philo_prop *philo);
+void	philo_copy2(t_philo *ptr, char *argv[], int i, pthread_mutex_t *forks);
+void	init_mutex(pthread_mutex_t *forks, pthread_mutex_t *p_lck, char **argv);
 
 /*ft_atoi.c*/
 int	ft_atoi(char *str);
 
-/* thread.c */
-void	*thread(void *vargp);
+/* philo_thread.c */
+long long unsigned	current_time(void);
+void	eat(t_philo *philo_ptr);
+void	sleeping(t_philo *philo_ptr);
+void	sleeping(t_philo *philo_ptr);
+void	*philosopher(void *vargp);
 
 #endif
