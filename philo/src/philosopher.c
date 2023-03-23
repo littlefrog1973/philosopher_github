@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:16:08 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/23 13:29:33 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:39:14 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*philosopher(void *vargp);
 
-int	check_argv(char *argv[])
+int	check_argv(int argc, char *argv[])
 {
 	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[2]) < 1 || ft_atoi(argv[3]) < 1
-		|| ft_atoi(argv[4]) < 1)
+		|| ft_atoi(argv[4]) < 1 || argc != 5)
 		return (0);
 	return (1);
 }
@@ -74,13 +74,14 @@ void	print_log(t_philo *philo, int state)
 	pthread_mutex_unlock(philo->print_lock);
 }
 
-void	init_thread_mutex(pthread_mutex_t *forks, pthread_mutex_t *print_lock)
+void	init_thread_mutex(pthread_mutex_t *forks, pthread_mutex_t *print_lock, char **argv)
 {
 	int	i;
 
 	pthread_mutex_init(print_lock, NULL);
 	i = 0;
-	while (i < MAX_PHILO)
+	while (i < ft_atoi(argv[1]))
+//	while (i < MAX_PHILO)
 	{
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
@@ -89,42 +90,30 @@ void	init_thread_mutex(pthread_mutex_t *forks, pthread_mutex_t *print_lock)
 
 int	main(int argc, char *argv[])
 {
-//	t_philo_prop	philo_prop;
 	int				i;
 	pthread_t		philo[MAX_PHILO];
 	pthread_mutex_t	forks[MAX_PHILO];
 	t_philo			*ptr;
 	pthread_mutex_t	print_lock;
 
-	if (argc != 5)
-		return (1);
-	init_thread_mutex(forks, &print_lock);
-	if(check_argv(argv))
-//	if(init_philo_prop(argv, &philo_prop))
+	if(check_argv(argc, argv))
 	{
-		i = 1;
-		while (i <= ft_atoi(argv[1]))
-//		while (i <= philo_prop.n_philo)
+		init_thread_mutex(forks, &print_lock, argv);
+		i = 0;
+		while (++i <= ft_atoi(argv[1]))
 		{
 			ptr = malloc(sizeof(t_philo));
 			if (ptr)
 			{
 				philo_copy2(ptr, argv, i, forks);
-//				philo_copy(ptr, philo_prop, i, forks);
 				ptr->print_lock = &print_lock;
 				pthread_create(&philo[i - 1], NULL, philosopher, ptr);
 			}
-			i++;
 		}
 		while (--i >= 1)
 		{
 			pthread_join(philo[i - 1], NULL);
-		}
-		i = 0;
-		while (i < MAX_PHILO)
-		{
-			pthread_mutex_destroy(&forks[i]);
-			i++;
+			pthread_mutex_destroy(&forks[i - 1]);
 		}
 		pthread_mutex_destroy(&print_lock);
 	}
@@ -140,14 +129,12 @@ long long unsigned	current_time(void)
 }
 void	eat(t_philo *philo_ptr)
 {
-//	philo_ptr->state = STATE_EATING;
 	print_log(philo_ptr, STATE_EATING);
 	usleep(philo_ptr->t_eat * 1000);
 }
 
 void	sleeping(t_philo *philo_ptr)
 {
-//	philo_ptr->state = STATE_SLEEPING;
 	print_log(philo_ptr, STATE_SLEEPING);
 	usleep(philo_ptr->t_sleep * 1000);
 }
