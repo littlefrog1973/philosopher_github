@@ -6,18 +6,20 @@
 #    By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 12:25:01 by sdeeyien          #+#    #+#              #
-#    Updated: 2023/03/24 06:14:50 by sdeeyien         ###   ########.fr        #
+#    Updated: 2023/03/24 12:48:25 by sdeeyien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang
-CFLAGS = -Wall -Werror -Wextra
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g
+#CFLAGS = -g
 UNAME_S := $(shell uname -s)
 SRCDIR = ./src/
 OBJDIR =
 DEPS = philosopher.h
 
-SRC = philosopher.c init.c ft_atoi.c philo_thread.c
+SRC = philosopher.c init.c ft_atoi.c philo_thread1.c
+#SRC = philosopher.c init.c ft_atoi.c philo_thread2.c
 BONUS =
 
 OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(SRC))
