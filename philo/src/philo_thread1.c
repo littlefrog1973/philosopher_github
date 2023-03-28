@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_thread.c                                     :+:      :+:    :+:   */
+/*   philo_thread1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 05:50:41 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/24 06:13:41 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:35:45 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-long long unsigned	current_time(void)
+unsigned long	current_time(void)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000LL) + (time.tv_usec / 1000LL));
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 void	eat(t_philo *philo_ptr)

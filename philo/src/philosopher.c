@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:16:08 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/24 12:30:42 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:44:19 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 void	print_log(t_philo *philo, int state)
 {
 	struct timeval		time;
-	long long unsigned	millisec;
+	unsigned long		millisec;
 
 	gettimeofday(&time, NULL);
-	millisec = (time.tv_sec * 1000LL) + (time.tv_usec / 1000LL);
+	millisec = (time.tv_sec * 1000L) + (time.tv_usec / 1000L) - philo->s_time;
 	pthread_mutex_lock(philo->p_lck);
 	if (state == FORK_TAKEN)
-		printf("%llu %d has taken a fork\n", millisec, philo->id);
+		printf("%5lu %3d has taken a fork\n", millisec, philo->id);
 	if (state == STATE_THINKING)
-		printf("%llu %d is thinking\n", millisec, philo->id);
+		printf("%5lu %3d is thinking\n", millisec, philo->id);
 	if (state == STATE_EATING)
-		printf("%llu %d is eating\n", millisec, philo->id);
+		printf("%5lu %3d is eating\n", millisec, philo->id);
 	if (state == STATE_SLEEPING)
-		printf("%llu %d is sleeping\n", millisec, philo->id);
+		printf("%5lu %3d is sleeping\n", millisec, philo->id);
 	if (state == STATE_DEAD)
-		printf("%llu %d died\n", millisec, philo->id);
+		printf("%5lu %3d died\n", millisec, philo->id);
 	pthread_mutex_unlock(philo->p_lck);
 }
 
@@ -50,8 +50,8 @@ int	main(int argc, char *argv[])
 			ptr = malloc(sizeof(t_philo));
 			if (ptr)
 			{
-				philo_copy2(ptr, argv, i, forks);
 				ptr->p_lck = &p_lck;
+				philo_copy2(ptr, argv, i, forks);
 				pthread_create(&philo[i - 1], NULL, philosopher, ptr);
 			}
 		}

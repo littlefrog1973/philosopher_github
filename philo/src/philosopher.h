@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 06:23:46 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/24 06:15:27 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:34:57 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/time.h>
 
 typedef struct  s_philo
+// s_time = start_time
+// p_lck = print_lock
 {
 	int				id;
 //	int				state;
@@ -28,6 +30,7 @@ typedef struct  s_philo
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
+	unsigned long	s_time;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*p_lck;
@@ -63,7 +66,7 @@ void	init_mutex(pthread_mutex_t *forks, pthread_mutex_t *p_lck, char **argv);
 int	ft_atoi(char *str);
 
 /* philo_thread.c */
-long long unsigned	current_time(void);
+unsigned long	current_time(void);
 void	eat(t_philo *philo_ptr);
 void	sleeping(t_philo *philo_ptr);
 void	sleeping(t_philo *philo_ptr);

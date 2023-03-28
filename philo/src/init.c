@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 07:34:45 by sdeeyien          #+#    #+#             */
-/*   Updated: 2023/03/24 12:48:38 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:36:31 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	philo_copy2(t_philo *ptr, char *argv[], int i, pthread_mutex_t *forks)
 	ptr->t_sleep = ft_atoi(argv[4]);
 	ptr->left_fork = &forks[i - 1];
 	ptr->right_fork = &forks[i % ft_atoi(argv[1])];
+	ptr->s_time = current_time();
 }
 
 void	init_mutex(pthread_mutex_t *forks, pthread_mutex_t *p_lck, char **argv)
