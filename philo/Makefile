@@ -6,7 +6,7 @@
 #    By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 12:25:01 by sdeeyien          #+#    #+#              #
-#    Updated: 2023/03/24 12:48:25 by sdeeyien         ###   ########.fr        #
+#    Updated: 2023/03/29 09:41:35 by sdeeyien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRCDIR = ./src/
 OBJDIR =
 DEPS = philosopher.h
 
-SRC = philosopher.c init.c ft_atoi.c philo_thread1.c
-#SRC = philosopher.c init.c ft_atoi.c philo_thread2.c
+#SRC = philosopher.c init.c ft_atoi.c philo_thread1.c
+SRC = philosopher.c init.c ft_atoi.c philo_thread2.c
 BONUS =
 
 OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(SRC))
